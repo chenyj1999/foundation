@@ -75,7 +75,9 @@
         <main id="app">
             <div id="top"></div>
             <div class="event-inner-header">
-                <div class="event-inner-cover event-inner-cover01"></div>
+                <div class="event-inner-cover"
+                    :style="{ backgroundImage: `url( ${('http://127.0.0.1/foundation/foundation_laravel/storage/app/public/event/' + apiResult.data.image_1)} )` }">
+                </div>
                 <div class="event-title">
                     <div class="event-title-L">
                         <a href="event.html"><button class="event-arrow">
@@ -89,12 +91,11 @@
                 <table class="event-title-table">
                     <tr>
                         <th>主辦單位</th>
-                        <td>徐元智先生紀念基金會</td>
+                        <td>{{apiResult.data.organizer}}</td>
                     </tr>
                     <tr>
                         <th>協辦單位</th>
-                        <td>國立陽明交通大學</td>
-                        <td>亞東科技大學</td>
+                        <td>{{apiResult.data.co_organizer}}</td>
                     </tr>
                 </table>
             </div>
@@ -403,7 +404,7 @@
                     }]
                 });
                 axios
-                    .get("http://127.0.0.1/foundation_laravel/public/api/event/" + id)
+                    .get("http://127.0.0.1/foundation/foundation_laravel/public/api/event/" + id)
                     .then((res) => {
                         apiResult.data = res.data
                         console.log(apiResult.data)

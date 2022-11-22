@@ -82,7 +82,7 @@
                 </div>
                 <div class="col-lg-5 col-md-5 col-12 news-pic-contain">
                     <img class="news-inner-pic"
-                        :src="('http://127.0.0.1/foundation_laravel/storage/app/public/news/' + apiResult.data.image)"
+                        :src="('http://127.0.0.1/foundation/foundation_laravel/storage/app/public/news/' + apiResult.data.image)"
                         alt="">
                 </div>
                 <div class="col-lg-1 col-md-1 col-0"></div>
@@ -181,7 +181,7 @@
                     }]
                 });
                 axios
-                    .get("http://127.0.0.1/foundation_laravel/public/api/news/" + id)
+                    .get("http://127.0.0.1/foundation/foundation_laravel/public/api/news/" + id)
                     .then((res) => {
                         apiResult.data = res.data
                         console.log(apiResult.data)

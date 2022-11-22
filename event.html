@@ -87,20 +87,18 @@
                         </div>
                     </div>
                     <div class="col-lg-5 col-md-5 col-sm-5 col-12 event-pic-area">
-                        <div class="event-img-div event-pic01">
-                            <div class="event-img-div"
-                                :style="{ backgroundImage: `url( ${('http://127.0.0.1/foundation_laravel/storage/app/public/event/' + item.image)} )` }">
-                                <a v-bind:href="item.link" v-if="item.type=='link'" target="_blank">
-                                    <div class="news-mask">
-                                        <p>閱讀更多</p>
-                                    </div>
-                                </a>
-                                <a href="#" @click="link(item.id)" v-else>
-                                    <div class="news-mask">
-                                        <p>閱讀更多</p>
-                                    </div>
-                                </a>
-                            </div>
+                        <div class="event-img-div"
+                            :style="{ backgroundImage: `url( ${('http://127.0.0.1/foundation/foundation_laravel/storage/app/public/event/' + item.image_1)} )` }">
+                            <a v-bind:href="item.link" v-if="item.type=='link'" target="_blank">
+                                <div class="news-mask">
+                                    <p>閱讀更多</p>
+                                </div>
+                            </a>
+                            <a href="#" @click="link(item.id)" v-else>
+                                <div class="news-mask">
+                                    <p>閱讀更多</p>
+                                </div>
+                            </a>
                         </div>
                     </div>
                     <div class="col-lg-1 col-md-1 col-sm-1 col-0"></div>
@@ -263,7 +261,7 @@
     <script src="js/slick.js" type="text/javascript" charset="utf-8"></script>
     <script src="js/slider.js" type="text/javascript" charset="utf-8"></script>
     <script>
-        
+
         const { reactive } = Vue;
         const app = {
             created() {
@@ -278,16 +276,18 @@
                         "start_date": "",
                         "end_date": "",
                         "event_date": "",
-                        "image": "",
+                        "organizer": "",
+                        "co_organizer": "",
+                        "image_1": "",
                         "link": "",
                         "type": "",
                         "created_at": ""
                     }]
                 });
                 axios
-                    .get("http://127.0.0.1/foundation_laravel/public/api/event")
+                    .get("http://127.0.0.1/foundation/foundation_laravel/public/api/event")
                     .then((res) => {
-                        apiResult.data = res.data
+                        apiResult.data = res.data.reverse()
                         console.log(apiResult.data)
                     })
                     .catch((error) => console.log(error));

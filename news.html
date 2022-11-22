@@ -91,7 +91,7 @@
                     <div class="news-main-contain" data-aos="fade-left" data-aos-delay="100"
                         v-for="item in apiResult.data">
                         <div class="news-img-div"
-                            :style="{ backgroundImage: `url( ${('http://127.0.0.1/foundation_laravel/storage/app/public/news/' + item.image)} )` }">
+                            :style="{ backgroundImage: `url( ${('http://127.0.0.1/foundation/foundation_laravel/storage/app/public/news/' + item.image)} )` }">
                             <a href="#" @click="link(item.id)">
                                 <div class="news-mask">
                                     <p>閱讀更多</p>
@@ -194,7 +194,7 @@
                     }]
                 })
                 axios
-                    .get("http://127.0.0.1/foundation_laravel/public/api/news")
+                    .get("http://127.0.0.1/foundation/foundation_laravel/public/api/news")
                     .then((res) => {
                         apiResult.data = res.data.reverse()
                     })
@@ -204,7 +204,7 @@
             methods: {
                 gettype(type) {
                     axios
-                        .get("http://127.0.0.1/foundation_laravel/public/api/news" + type)
+                        .get("http://127.0.0.1/foundation/foundation_laravel/public/api/news" + type)
                         .then((res) => {
                             apiResult.data = res.data.reverse()
                             console.log(apiResult.data);
