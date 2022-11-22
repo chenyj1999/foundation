@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="css/style.css">
     <script src="https://unpkg.com/vue@next"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
 </head>
 
 <style>
@@ -91,7 +92,7 @@
                 <table class="event-title-table">
                     <tr>
                         <th>主辦單位</th>
-                        <td>{{apiResult.data.organizer}}</td>
+                        <td>{{apiResult.data.host}}</td>
                     </tr>
                     <tr>
                         <th>協辦單位</th>
@@ -126,28 +127,42 @@
                 <div class="col-lg-2 col-md-2 col-1"></div>
             </div>
             <div class="row">
-                <div class="col-lg-2 col-md-1 col-0"></div>
+                <div class="col-lg-2 col-md-1 col-0">{{apiResult.data.image_1}}</div>
                 <div class="col-lg-8 col-md-10 col-12 event-pic-contain">
-                    <div class="lazy">
-                        <div>
-                            <img class="lazy-img" data-lazy="img/events/01/eyes_poster.jpg" />
+                    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="img/events/01/eyes_poster.jpg" class="d-block w-100" alt="...">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="img/cul.png" class="d-block w-100" alt="...">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="img/events/01/eyes_poster.jpg" class="d-block w-100" alt="...">
+                            </div>
                         </div>
-                        <div>
-                            <img class="lazy-img" data-lazy="img/events/01/eyes_poster.jpg" />
-                        </div>
-                        <div>
-                            <img class="lazy-img" data-lazy="img/events/01/eyes_poster.jpg" />
-                        </div>
-                        <div>
-                            <img class="lazy-img" data-lazy="img/events/01/eyes_poster.jpg" />
-                        </div>
-                        <div>
-                            <img class="lazy-img" data-lazy="img/events/01/eyes_poster.jpg" />
-                        </div>
-                        <div>
-                            <img class="lazy-img" data-lazy="img/events/01/eyes_poster.jpg" />
-                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
                     </div>
+                    <!--<div class="lazy">
+                        <div>
+                            <img class="lazy-img" :data-lazy="('img/cul.png')" />
+                        </div>
+                        <div>
+                            <img class="lazy-img" :data-lazy="('img/events/01/eyes_poster.jpg')" />
+                        </div>
+                        <div>
+                            <img class="lazy-img" :data-lazy="('img/edu.png')" />
+                        </div>
+                    </div>-->
                 </div>
                 <div class="col-lg-2 col-md-1 col-0"></div>
             </div>
@@ -309,7 +324,7 @@
             <div class="row">
                 <div class="col-lg-1 col-md-1 col-1"></div>
                 <div class="col-lg-10 col-md-10 col-10 news-detail">
-                    <p>Post date：2022/08/01<br>Post by：徐元智先生紀念基金會</p>
+                    <p>Post date：{{ formatDate(apiResult.data.created_at) }}<br>Post by：徐元智先生紀念基金會</p>
                 </div>
                 <div class="col-lg-1 col-md-1 col-1"></div>
             </div>
@@ -397,7 +412,7 @@
                         "start_date": "",
                         "end_date": "",
                         "event_date": "",
-                        "image": "",
+                        "image_1": "",
                         "link": "",
                         "type": "",
                         "created_at": ""
@@ -413,7 +428,10 @@
                 return { apiResult }
             },
             methods: {
-
+                formatDate(dateString) {
+                    const date = dayjs(dateString);
+                    return date.format('YYYY/MM/D');
+                }
             },
         }
         Vue.createApp(app).mount("#app");
@@ -476,7 +494,7 @@
             slidesToScroll: 1,
             arrows: true,
             autoplay: true,
-            autoplaySpeed: 3000,
+            autoplaySpeed: 1000,
             prevArrow: "<img class='event-prev' src='img/L.png'>",
             nextArrow: "<img class='event-next' src='img/R.png'>",
         });
