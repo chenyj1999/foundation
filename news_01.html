@@ -81,9 +81,7 @@
                     <p>{{apiResult.data.content}}</p>
                 </div>
                 <div class="col-lg-5 col-md-5 col-12 news-pic-contain">
-                    <img class="news-inner-pic"
-                        v-bind:src="('http://127.0.0.1/foundation/foundation_laravel/storage/app/public/news/' + apiResult.data.image)"
-                        alt="">
+                    <img class="news-inner-pic" v-bind:src="(url_news_img + apiResult.data.image)" alt="">
                 </div>
                 <div class="col-lg-1 col-md-1 col-0"></div>
             </div>
@@ -168,8 +166,10 @@
                 var getUrlString = location.href;
                 var url = new URL(getUrlString);
                 var id = url.searchParams.get('id');
+                var url_news = 'http://127.0.0.1/foundation/foundation_laravel/public/api/news/';
+                var url_news_img = '../foundation_laravel/storage/app/public/news/';
 
-                const apiResult = reactive({
+                apiResult = reactive({
                     data: [{
                         "id": "",
                         "title": "",
@@ -181,14 +181,14 @@
                     }]
                 });
                 axios
-                    .get("http://127.0.0.1/foundation/foundation_laravel/public/api/news/" + id)
+                    .get(url_news + id)
                     .then((res) => {
                         apiResult.data = res.data
                         console.log(apiResult.data)
                         console.log(apiResult.data.created_at)
                     })
                     .catch((error) => console.log(error));
-                return { apiResult }
+                return { apiResult, url_news_img }
             },
             methods: {
 

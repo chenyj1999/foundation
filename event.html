@@ -71,7 +71,8 @@
         <main id="app">
             <div id="top"></div>
             <div v-for="item in apiResult.data">
-                <div class="row event-area" v-if="Date.parse(item.event_date) > new Date() || item.type=='link'">
+                <!-- v-if="Date.parse(item.event_date) > new Date() || item.type=='link'"-->
+                <div class="row event-area">
                     <div class="col-lg-1 col-md-1 col-sm-1 col-0"></div>
                     <div class="col-lg-5 col-md-5 col-sm-5 col-12">
                         <div class="event-content">
@@ -88,7 +89,7 @@
                     </div>
                     <div class="col-lg-5 col-md-5 col-sm-5 col-12 event-pic-area">
                         <div class="event-img-div"
-                            :style="{ backgroundImage: `url( ${('http://127.0.0.1/foundation/foundation_laravel/storage/app/public/event/' + item.image_1)} )` }">
+                            :style="{ backgroundImage: `url( ${(url_event_img + item.image_1)} )` }">
                             <a v-bind:href="item.link" v-if="item.type=='link'" target="_blank">
                                 <div class="news-mask">
                                     <p>閱讀更多</p>
@@ -268,7 +269,9 @@
             },
             setup() {
                 var text = '';
-                const apiResult = reactive({
+                var url_event = 'http://127.0.0.1/foundation/foundation_laravel/public/api/event';
+                var url_event_img = '../foundation_laravel/storage/app/public/event/';
+                apiResult = reactive({
                     data: [{
                         "id": "",
                         "title": "",
@@ -285,13 +288,13 @@
                     }]
                 });
                 axios
-                    .get("http://127.0.0.1/foundation/foundation_laravel/public/api/event")
+                    .get(url_event)
                     .then((res) => {
                         apiResult.data = res.data.reverse()
                         console.log(apiResult.data)
                     })
                     .catch((error) => console.log(error));
-                return { apiResult }
+                return { apiResult, url_event_img }
             },
             methods: {
                 link(id) {

@@ -118,8 +118,7 @@
                 <div class="col-lg-3 col-md-3 col-sm-12 Lb-block">
                     <div class="news-contain" data-aos="fade-left" v-for="item in apiResult.data.slice(0, 1)">
                         <h1>最新消息</h1>
-                        <div class="img-div"
-                            :style="{ backgroundImage: `url( ${('http://127.0.0.1/foundation/foundation_laravel/storage/app/public/news/' + item.image)} )` }">
+                        <div class="img-div" :style="{ backgroundImage: `url( ${(url_news_img + item.image)} )` }">
                             <a href="#" @click="link(item.id)">
                                 <div class="mask">
                                     <p>閱讀更多</p>
@@ -135,8 +134,7 @@
                 <div class="col-lg-8 col-md-8 col-sm-12 news-area">
                     <div class="news-contain" data-aos="fade-left" data-aos-delay="100"
                         v-for="item in apiResult.data.slice(1, 4)">
-                        <div class="img-div"
-                            :style="{ backgroundImage: `url( ${('http://127.0.0.1/foundation/foundation_laravel/storage/app/public/news/' + item.image)} )` }">
+                        <div class="img-div" :style="{ backgroundImage: `url( ${(url_news_img + item.image)} )` }">
                             <a href="#" @click="link(item.id)">
                                 <div class="mask">
                                     <p>閱讀更多</p>
@@ -296,7 +294,9 @@
             },
             setup() {
                 const text = '';
-                const apiResult = reactive({
+                var url_news = 'http://127.0.0.1/foundation/foundation_laravel/public/api/news';
+                var url_news_img = '../foundation_laravel/storage/app/public/news/';
+                apiResult = reactive({
                     data: [{
                         "id": "",
                         "title": "",
@@ -307,13 +307,13 @@
                     }]
                 });
                 axios
-                    .get("http://127.0.0.1/foundation/foundation_laravel/public/api/news")
+                    .get(url_news)
                     .then((res) => {
                         apiResult.data = res.data.reverse()
                         console.log(apiResult.data);
                     })
                     .catch((error) => console.log(error));
-                return { apiResult }
+                return { apiResult, url_news_img }
             },
             methods: {
                 link(id) {
