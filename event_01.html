@@ -86,7 +86,7 @@
                         <h1>2022</h1>
                         <h1>{{apiResult.data.title}}</h1>
                     </div>
-                    <a href="#" class="sign-area"><button class="btn-sign"
+                    <a v-bind:href="apiResult.data.link" class="sign-area"><button class="btn-sign"
                             v-if="Date.parse(apiResult.data.event_date) > new Date()">前往報名</button></a>
                 </div>
                 <table class="event-title-table">
@@ -146,6 +146,8 @@
                 </div>
                 <div class="col-lg-2 col-md-1 col-0"></div>
             </div>
+            <div v-html="apiResult.data.editordata"></div>
+            <!--活動期程
             <div class="row event-flow">
                 <div class="col-lg-2 col-md-1 col-0"></div>
                 <div class="col-lg-8 col-md-10 col-12 flow-area">
@@ -241,7 +243,8 @@
                     </table>
                 </div>
                 <div class="col-lg-2 col-md-1 col-0"></div>
-            </div>
+            </div>-->
+
             <!-- <div class="event-talk">
                 <div class="row">
                     <div class="col-12">
@@ -271,6 +274,8 @@
                     <div class="col-lg-1 col-md-1 col-0"></div>
                 </div>
             </div> -->
+
+            <!--講師
             <div class="row person-area">
                 <div class="col-lg-2 col-md-1 col-0"></div>
                 <div class="col-lg-3 col-md-4 col-12 person-head-area">
@@ -300,7 +305,8 @@
                     <div class="person-head"></div>
                 </div>
                 <div class="col-lg-2 col-md-1 col-1 person-text2-R"></div>
-            </div>
+            </div>-->
+
             <div class="row">
                 <div class="col-lg-1 col-md-1 col-1"></div>
                 <div class="col-lg-10 col-md-10 col-10 news-detail">
@@ -405,6 +411,7 @@
                         "image_2": "",
                         "image_3": "",
                         "image_4": "",
+                        "editordata": "",
                         "link": "",
                         "type": "",
                         "created_at": ""
