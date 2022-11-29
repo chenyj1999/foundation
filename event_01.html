@@ -28,6 +28,17 @@
             background-image: linear-gradient(to right, transparent 0%, transparent 100%);
         }
     }
+
+    .event_content {
+        width: 80%;
+        margin: 0px auto;
+    }
+
+    .event_content>ul>li {
+        list-style-type: disc;
+        display: list-item;
+        text-align: left;
+    }
 </style>
 
 <body>
@@ -146,7 +157,7 @@
                 </div>
                 <div class="col-lg-2 col-md-1 col-0"></div>
             </div>
-            <div v-html="apiResult.data.editordata"></div>
+            <div v-html="apiResult.data.editordata" class="event_content"></div>
             <!--活動期程
             <div class="row event-flow">
                 <div class="col-lg-2 col-md-1 col-0"></div>
