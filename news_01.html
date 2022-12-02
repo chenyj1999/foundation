@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="css/style.css">
     <script src="https://unpkg.com/vue@next"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
 </head>
 
 <body>
@@ -52,7 +53,7 @@
                             <a class="dropdown-item" href="art.html">藝文</a>
                             <a class="dropdown-item" href="design.html">設計</a>
                             <a class="dropdown-item" href="edu.html">教育</a>
-                            <a class="dropdown-item" href="green.html">環保</a>
+                            <a class="dropdown-item" href="https://fzios210.github.io/VR360/">環保</a>
                             <a class="dropdown-item" href="charity.html">公益</a>
                         </div>
                     </li>
@@ -88,7 +89,7 @@
             <div class="row">
                 <div class="col-lg-1 col-md-1 col-1"></div>
                 <div class="col-lg-10 col-md-10 col-10 news-detail">
-                    <p>Post date：{{apiResult.data.created_at}}<br>Post by：徐元智先生紀念基金會</p>
+                    <p>Post date：{{ formatDate(apiResult.data.created_at) }}<br>Post by：徐元智先生紀念基金會</p>
                 </div>
                 <div class="col-lg-1 col-md-1 col-1"></div>
             </div>
@@ -134,7 +135,7 @@
                         <li class="ft-li2"><a href="art.html">藝文</a></li>
                         <li class="ft-li2"><a href="design.html">設計</a></li>
                         <li class="ft-li2"><a href="edu.html">教育</a></li>
-                        <li class="ft-li2"><a href="green.html">環保</a></li>
+                        <li class="ft-li2"><a href="https://fzios210.github.io/VR360/">環保</a></li>
                         <li class="ft-li2"><a href="charity.html">公益</a></li>
                     </ul>
                 </div>
@@ -191,7 +192,10 @@
                 return { apiResult, url_news_img }
             },
             methods: {
-
+                formatDate(dateString) {
+                    const date = dayjs(dateString);
+                    return date.format('YYYY/MM/D');
+                }
             },
         }
         Vue.createApp(app).mount("#app");
