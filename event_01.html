@@ -433,7 +433,7 @@
                 var url = new URL(getUrlString);
                 var id = url.searchParams.get('id');
                 var url_event = 'http://127.0.0.1/foundation/foundation_laravel/public/api/event/';
-                var url_event_img = '../foundation_laravel/storage/app/public/event/';
+                var url_event_img = 'http://127.0.0.1/foundation/foundation_laravel/storage/app/public/event/';
                 axios
                     .get(url_event + id)
                     .then((res) => {
