@@ -2,6 +2,15 @@
 <html lang="en">
 
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-250890082-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-250890082-1');
+    </script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -72,7 +81,7 @@
                             <a class="dropdown-item" href="art.html">藝文</a>
                             <a class="dropdown-item" href="design.html">設計</a>
                             <a class="dropdown-item" href="edu.html">教育</a>
-                            <a class="dropdown-item" href="https://fzios210.github.io/VR360/">環保</a>
+                            <a class="dropdown-item" href="green.html">環保</a>
                             <a class="dropdown-item" href="charity.html">公益</a>
                         </div>
                     </li>
@@ -98,7 +107,7 @@
                         <h1>{{apiResult.data.title}}</h1>
                     </div>
                     <a v-bind:href="apiResult.data.link" class="sign-area"><button class="btn-sign"
-                            v-if="Date.parse(apiResult.data.event_date) > new Date()">前往報名</button></a>
+                            v-if="Date.parse(apiResult.data.end_date) > new Date()">前往報名</button></a>
                 </div>
                 <table class="event-title-table">
                     <tr>
